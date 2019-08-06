@@ -264,13 +264,14 @@ class Query<T extends Model> {
 class DatastoreDB {
   final ds.Datastore datastore;
   final ModelDB _modelDB;
-  Partition _defaultPartition;
+  final Partition _defaultPartition;
 
-  DatastoreDB(this.datastore, {ModelDB modelDB, Partition defaultPartition})
-      : _modelDB = modelDB != null ? modelDB : ModelDBImpl() {
-    _defaultPartition =
-        defaultPartition != null ? defaultPartition : Partition(null);
-  }
+  DatastoreDB(
+    this.datastore, {
+    ModelDB modelDB,
+    Partition defaultPartition,
+  })  : _modelDB = modelDB ?? ModelDBImpl(),
+        _defaultPartition = defaultPartition ?? Partition(null);
 
   /// The [ModelDB] used to serialize/deserialize objects.
   ModelDB get modelDB => _modelDB;

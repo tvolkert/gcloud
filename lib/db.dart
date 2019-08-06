@@ -47,5 +47,7 @@ DatastoreDB get dbService => ss.lookup(_dbKey) as DatastoreDB;
 /// Calling this function more than once inside the same service scope is not
 /// allowed.
 void registerDbService(DatastoreDB db) {
+  print(
+      'gcloud/db : Registering DB service : $db(${db.hashCode}) : ${db.datastore}(${db.datastore.hashCode})');
   ss.register(_dbKey, db);
 }
